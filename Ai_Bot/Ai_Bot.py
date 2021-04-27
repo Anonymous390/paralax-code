@@ -1,6 +1,7 @@
 with open("data.txt") as f:
     data = [item.split(",") for item in f.readlines()]
-data = {item[0]:item[1:] for item in data]
+is_data = {item[1]:item[2] for item in filter(lambda x: x[0] == "is", data)}
+in_data = {item[1]:item[2] for item in filter(lambda x: x[0] == "in", data)}
 
 def message2():
     msg = input()
@@ -10,6 +11,13 @@ def message2():
         msg = ''.join(words)
     if len(words[0]) >= 2:
         msg = ' '.join(words)
+    
+    if msg in is_data:
+        print(is_data[msg])
+    else:
+        for key, item in in_data.items():
+            if key in msg:
+                print(in_data[key])
 
 def message():
     msg = ""
@@ -38,5 +46,5 @@ def message():
         print('nothing')
 
 while True: 
-    message()
+    message2()
 
