@@ -1,3 +1,16 @@
+with open("data.txt") as f:
+    data = [item.split(",") for item in f.readlines()]
+data = {item[0]:item[1:] for item in data]
+
+def message2():
+    msg = input()
+    tokens = msg.lower().split()
+    words = [e.lower() for e in tokens]
+    if len(words[0]) == 1:
+        msg = ''.join(words)
+    if len(words[0]) >= 2:
+        msg = ' '.join(words)
+
 def message():
     msg = ""
     msg = input()
