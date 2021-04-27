@@ -3,8 +3,8 @@ import os
 is_data = {}
 in_data = {}
 
-for file in os.listdir("data"):
-    with open(file) as f:
+for file in os.listdir(os.path.join(os.path.dirname(__file__), "data")):
+    with open(os.path.join(os.path.dirname(__file__), "data", file)) as f:
         data = [item.rstrip().split(",") for item in f.readlines()]
     is_data.extend({item[1]:item[2] for item in filter(lambda x: x[0] == "is", data)})
     in_data.extend({item[1]:item[2] for item in filter(lambda x: x[0] == "in", data)})

@@ -1,0 +1,10 @@
+in,mushrooms,EWW I HATE MUSHROOMS!
+in,carrots,EWW I HATE CARROTS!
+in,peas,EWW I HATE PEAS!
+in,leek,EWW I HATE LEEK!
+is,do you like mcdonalds,Yea its quite nice
+is,do you like kfc,Yea its quite nice but very oily
+is,do you like burger king,Its alright ig
+is,do you like nando's,Never had it before
+is,is fast food healthy,NO definitely not
+is,what kinds of food are healthy,Fruit and veg (you need your 5 a day)
