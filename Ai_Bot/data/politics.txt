@@ -5,4 +5,4 @@ in,president of india,Ram Nath Kovind is the Current President of India
 in,prime minister of india,Narendra Modi Is the current Prime Minister of India
 is,Who is the P,nothing
 in,finance minister,Ajay Bhushan Pandey is the current Finance Secretary of India at present
-in,finance secretary,Ajay Bhushan Pandey is the current Finance Secretary of India at present
+in,finance secretary,Ajay Bhushan Pandey is the current Finance Secretary of India at presentin,president of china,Xi Jinping
