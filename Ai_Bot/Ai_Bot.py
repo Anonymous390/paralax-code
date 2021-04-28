@@ -21,9 +21,13 @@ def message():
     if msg in is_data:
         print(is_data[msg])
     else:
+        flag = False
         for key, item in in_data.items():
             if key in msg:
                 print(in_data[key])
+                flag = True
+        if not flag:
+            pass # Add code here
 
 while True: 
     message()
