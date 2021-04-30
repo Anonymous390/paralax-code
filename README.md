@@ -3,8 +3,11 @@ This is a repository where all of our group projects will be stored
 
 ## Finished projects
 
-None.
+- 500 fixed response project
 
 ## Ongoing projects
 
-- 500 fixed response project
+- Safe Chat Application
+
+## Goals
+- (Django/Flask) Website maybe?
