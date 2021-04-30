@@ -7,8 +7,10 @@ This is a repository where all of our group projects will be stored
 
 ## Ongoing projects
 
-- Chatbot
+- Safe Chat Application
 
 ## Planned projects
 
 - Django and/or Flask website (maybe?)
+
+
