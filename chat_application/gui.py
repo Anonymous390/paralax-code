@@ -4,25 +4,26 @@ class App(QApplication):
     def __init__(self):
         super(App, self).__init__([])
         self.window = Window()
-        self.window.add_layout(Layout())
-        self.window.set_layout(1)
+        layout = QVBoxLayout()
+        layout.addWidget(QPushButton(text="Hello"))
+        self.window.addLayout(layout)
+        self.window.setLayout(0)
         self.window.show()
+    
+    def run(self):
+        self.exec()
 
 class Window(QWidget):
     def __init__(self):
         super(Window, self).__init__()
         self.layouts = []
     
-    def add_layout(self, layout)
+    def addLayout(self, layout):
         self.layouts.append(layout)
     
-    def set_layout(self, num):
-        super(Window, self).set_layout(self.layouts[num])
-
-class Layout(QVBoxLayout):
-    def __init__(self):
-        pass
+    def setLayout(self, num):
+        super(Window, self).setLayout(self.layouts[num])
 
 if __name__ == "__main__":
     app = App()
-    app.
+    app.run()
