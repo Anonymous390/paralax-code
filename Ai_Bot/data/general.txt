@@ -1,0 +1,26 @@
+in,hi,Hi
+in,hello,Hello there :)
+in,how are you,I'm good thanks
+in,sup,Sup bro
+in,hey,Hey man
+in,yo,Wassup
+in,your name,I am the 500 response AI :)
+in,favourite colour,Green
+in,favourite color,Blue
+in,favourite food,Pizza
+in,siri,I hate Siri (She cheated on me)
+in,alexa,We're best freinds!
+in,google assistant,That guy is kind annoying :/
+in,weather,You can check the weather all over the world if you just google it
+in,google,I cant google things, do it yourself :P
+in,how are you,Doing ok
+in,minecraft,Minecraft is a great game!
+in,what are you,I am the 500 response AI :)
+in,what can you do,I answer you if I have an answer for what you say
+in,what is life,I have no idea
+in,favourite song,This one https://www.youtube.com/watch?v=dQw4w9WgXcQ
+in,who am i,You are a mystery to me :P
+in,bye,Bye!
+in,goodbye,See ya!
+in,see you,Bye!
+in,see you later,Later bro!
