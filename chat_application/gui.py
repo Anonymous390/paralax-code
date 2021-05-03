@@ -1,29 +1,29 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 
-class App(QApplication):
+class Ui_Form(QWidget):
     def __init__(self):
-        super(App, self).__init__([])
-        self.window = Window()
-        layout = QVBoxLayout()
-        layout.addWidget(QPushButton(text="Hello"))
-        self.window.addLayout(layout)
-        self.window.setLayout(0)
-        self.window.show()
-    
-    def run(self):
-        self.exec()
+        super(Ui_Form, self).__init__()
+        verticalLayout = QVBoxLayout()
+        label = QLabel("Welcome to Safe Chat")
+        label.setAlignment(Qt.AlignCenter)
+        label.setWordWrap(True)
+        verticalLayout.addWidget(label)
 
-class Window(QWidget):
-    def __init__(self):
-        super(Window, self).__init__()
-        self.layouts = []
-    
-    def addLayout(self, layout):
-        self.layouts.append(layout)
-    
-    def setLayout(self, num):
-        super(Window, self).setLayout(self.layouts[num])
+        gridLayout = QGridLayout()
+        pushButton = QPushButton("Information")
+        pushButton_2 = QPushButton("Register")
+        pushButton_4 = QPushButton("Login")
+        pushButton_3 = QPushButton("Settings")
+        gridLayout.addWidget(pushButton, 0, 0)
+        gridLayout.addWidget(pushButton_2, 0, 1)
+        gridLayout.addWidget(pushButton_3, 1, 0)
+        gridLayout.addWidget(pushButton_4, 1, 1)
+        verticalLayout.addLayout(gridLayout)
+        self.setLayout(verticalLayout)
 
 if __name__ == "__main__":
-    app = App()
-    app.run()
+    app = QApplication([])
+    ui = Ui_Form()
+    ui.show()
+    app.exec()
