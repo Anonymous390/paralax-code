@@ -14,7 +14,7 @@ This is a repo to store all our code.
 
 - Safe Chat Application
 
-  (write desc here)
+  We call it a 'safe' chat application, because our idea is that only people with the same wifi can connect, and chat in this application. This is highly in convinient, and impractical, it cannot be actually sold, since no one, is actually gonna only want to be able to message people in their house only. We are using pyQt5 and sockets, again, the main people working on this, are, me(blankRiot96) and rayzchen. Me, working on the servers and clients, while he works on the GUI.
 
 ## Planned projects
 

@@ -25,6 +25,9 @@ orange = (255,165,0)
 tile_size = 50
 fps = 60
 
+# Images
+cursor_img = pygame.image.load("images/cursor.png")
+
 # Grid
 def draw_grid():
     for line in range(0, 16):
@@ -32,18 +35,37 @@ def draw_grid():
         pygame.draw.line(screen, (200, 200, 200), (line * tile_size, 0), (line * tile_size, screen_height))
 
 
-data = 100
-'''
-# World 
-row_count = 0
-for row in data:
-    col_count = 0
-    for tile in row:
-        col_count += 1
-    row_count += 1
-'''
+# Agreeeable Positions
+x = 0
+y = 0
+
+x_p = []
+y_p = []
+
+while x <= screen_width:
+    x_p.append(x)
+    x += 25
+while y <= screen_height:
+    y_p.append(y)
+    y += 25
+
+c = 0
+e = 0
+
+good_pos = []
+while c <= len(x_p)-1:
+    while e <= len(y_p)-1:
+        a = (x_p[c], y_p[e])
+        good_pos.append(a)
+        e += 1
+    c += 1
+    e = 0
 
 
+
+class Cursor():
+    def __init__(self, x, y):
+        self.image = cursor_img.get_rect()
 
 run = True
 while run:
@@ -53,6 +75,7 @@ while run:
 
     position = pygame.mouse.get_pos()
 
+
     # Blocks
     def purple_block():
         pygame.draw.rect(screen, purple, (position[0], position[1], tile_size, tile_size))
@@ -61,7 +84,8 @@ while run:
         pygame.draw.rect(screen, purple, (position[0], position[1]+tile_size, tile_size, tile_size))
 
     screen.fill(bg)
-    purple_block()
+    if rect.collidepoint(x, y) in good_pos:
+        purple_block()
     draw_grid()
 
     #event handler
