@@ -19,16 +19,14 @@ def screen_clear():
 
 def message():
     raw_msg = input("> ")
-    print(raw_msg)
     msg = raw_msg.replace("'", "")
-    print(msg)
     tokens = msg.lower().split()
     words = [e.lower() for e in tokens]
     if len(words[0]) == 1:
         msg = ''.join(words)
     if len(words[0]) >= 2:
         msg = ' '.join(words)
-    
+
     if msg in is_data:
         print(is_data[msg])
     else:
@@ -72,7 +70,7 @@ What category does this knowledge fall into?
 
                 file_handler.setFormatter(formatter)
                 logger.addHandler(file_handler)
-                
+
                 logger.debug(f'in,{msg},{new_input}')
                 print("Data has been updated! Re-run the program to use new data!")
 
@@ -84,7 +82,7 @@ What category does this knowledge fall into?
                 print("Hey thats an invalid input!")
 
 try:
-    while True: 
+    while True:
         message()
 except KeyboardInterrupt:
     # If you feel that this would be nice you could add it :)
