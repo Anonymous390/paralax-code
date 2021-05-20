@@ -11,8 +11,17 @@ for file in os.listdir(os.path.join(os.path.dirname(__file__), "data")):
     is_data.update({item[1]:item[2] for item in filter(lambda x: x[0] == "is", data)})
     in_data.update({item[1]:item[2] for item in filter(lambda x: x[0] == "in", data)})
 
+def screen_clear():
+   if os.name == 'posix':
+      _ = os.system('clear')
+   else:
+      _ = os.system('cls')
+
 def message():
-    msg = input("> ")
+    raw_msg = input("> ")
+    print(raw_msg)
+    msg = raw_msg.replace("'", "")
+    print(msg)
     tokens = msg.lower().split()
     words = [e.lower() for e in tokens]
     if len(words[0]) == 1:
@@ -41,15 +50,18 @@ What category does this knowledge fall into?
 
 
                 if category == "a":
-                    file_name = 'Coding/Ai_Bot/data/general.txt'
-                if category == "b":
-                    file_name = 'Coding/Ai_Bot/data/politics.txt'
-                if category == "c":
-                    file_name = 'Coding/Ai_Bot/data/food.txt'
-                if category == "d":
-                    file_name = 'Coding/Ai_Bot/data/science.txt'
-                if category == "e":
-                    file_name = 'Coding/Ai_Bot/data/others.txt'
+                    file_name = 'data/general.txt'
+                elif category == "b":
+                    file_name = 'data/politics.txt'
+                elif category == "c":
+                    file_name = 'data/food.txt'
+                elif category == "d":
+                    file_name = 'data/science.txt'
+                elif category == "e":
+                    file_name = 'data/others.txt'
+                else:
+                    print("Hey, that's an invalid input!")
+                    exit()
                 new_input = input("Great! So what would the correct answer to your statement be?\n")
 
                 logger = logging.getLogger(__name__)
@@ -71,6 +83,10 @@ What category does this knowledge fall into?
             else:
                 print("Hey thats an invalid input!")
 
-while True: 
-    message()
-
+try:
+    while True: 
+        message()
+except KeyboardInterrupt:
+    # If you feel that this would be nice you could add it :)
+    # screen_clear()
+    print("Cya, Goodbye!")
