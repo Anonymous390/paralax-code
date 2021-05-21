@@ -20,10 +20,10 @@ def receive():
 while run:
     time.sleep(0.1)
 
-    with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'r') as t:
+    with open('/Users/veresh/Desktop/Github/Coding/chat_application/turns.txt', 'r') as t:
         if t.read() == "client receive":
             receive()
     a = input("You: ")
     s.send(bytes(a, "utf-8"))
-    with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'w') as t:
+    with open('/Users/veresh/Desktop/Github/Coding/chat_application/turns.txt', 'w') as t:
         t.write('server receive')
