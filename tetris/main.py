@@ -254,7 +254,7 @@ def update_score(nscore):
 
 
 def max_score():
-    with open('scores.txt', 'r') as f:
+    with open('/Users/veresh/Desktop/Github/Coding/tetris/scores.txt', 'r') as f:
         lines = f.readlines()
         score = lines[0].strip()
 
