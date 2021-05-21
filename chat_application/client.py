@@ -1,28 +1,29 @@
 import socket
+import time
 
-HEADER = 64
-PORT = 5050
-FORMAT = 'utf-8'
-DISCONNECT_MESSAGE = "!DISCONNECT"
-SERVER = socket.gethostbyname(socket.gethostname())
-ADDR = (SERVER, PORT)
+# /Users/veresh/Desktop/Python/pyQt5/sock/client.py
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((socket.gethostbyname(socket.gethostname()), 5050))
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(ADDR)
+run = True
 
-def send(msg):
-    message = msg.encode(FORMAT)
-    msg_length = len(message)
-    send_length = str(msg_length).encode(FORMAT)
-    send_length += b' ' * (HEADER - len(send_length))
-    client.send(send_length)
-    client.send(message)
-    print(client.recv(2048).decode(FORMAT))
 
-send("Hello World!")
-input()
-send("Hello Everyone!")
-input()
-send("Hello Tim!")
+def receive():
+    full_msg = ''
+    msg = s.recv(1024)
+    if len(msg) <= 0:
+        run = False
+    full_msg += msg.decode("utf-8")
+    print(full_msg)
 
-send(DISCONNECT_MESSAGE)
+
+while run:
+    time.sleep(0.1)
+
+    with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'r') as t:
+        if t.read() == "client receive":
+            receive()
+    a = input("You: ")
+    s.send(bytes(a, "utf-8"))
+    with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'w') as t:
+        t.write('server receive')

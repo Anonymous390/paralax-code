@@ -1,43 +1,36 @@
-import socket 
-import threading
+import socket
+import time
 
-HEADER = 64
-PORT = 5050
-SERVER = socket.gethostbyname(socket.gethostname())
-ADDR = (SERVER, PORT)
-FORMAT = 'utf-8'
-DISCONNECT_MESSAGE = "!DISCONNECT"
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((socket.gethostbyname(socket.gethostname()), 5050))
+s.listen(5)
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(ADDR)
 
-def handle_client(conn, addr):
-    print(f"[NEW CONNECTION] {addr} connected.")
-
-    connected = True
-    while connected:
-        msg_length = conn.recv(HEADER).decode(FORMAT)
-        if msg_length:
-            msg_length = int(msg_length)
-            msg = conn.recv(msg_length).decode(FORMAT)
-            if msg == DISCONNECT_MESSAGE:
-                connected = False
-
-            print(f"[{addr}] {msg}")
-            conn.send("Msg received".encode(FORMAT))
-
-    conn.close()
-        
-
-def start():
-    server.listen()
-    print(f"[LISTENING] Server is listening on {SERVER}")
+full_msg = ''
+while True:
+    clientsocket, address = s.accept()
+    print(f"--> {address} has joined the chat!")
+    clientsocket.send(bytes("Welcome to the server!", "utf-8"))
+    with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'w') as t:
+        t.write('client receive')
     while True:
-        conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
-        thread.start()
-        print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")
+        time.sleep(0.1)
+        # Receive
+        with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'r') as t:
+            if t.read() == 'server receive':
+                msg = clientsocket.recv(1024)
+                if len(msg) <= 0:
+                    break
+                full_msg += msg.decode("utf-8")
+                # Send
+                clientsocket.send(bytes(full_msg, "utf-8"))
+                full_msg = ''
+                with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'w') as t:
+                    t.write('client receive')
 
+        # Close connection
+        if full_msg == '!d':
+            clientsocket.close()
+            with open('/Users/veresh/Desktop/Python/pyQt5/sock/turns.txt', 'w') as t:
+                t.write('')
 
-print("[STARTING] server is starting...")
-start()
