@@ -3,7 +3,7 @@ import socket
 HEADER = 64
 PORT = 5050
 FORMAT = 'utf-8'
-DISCONNECT_MSG = "!DISCONNECT"
+DISCONNECT_MESSAGE = "!DISCONNECT"
 SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER, PORT)
 
@@ -17,7 +17,12 @@ def send(msg):
     send_length += b' ' * (HEADER - len(send_length))
     client.send(send_length)
     client.send(message)
+    print(client.recv(2048).decode(FORMAT))
 
-send("hello world!")
-send("hello everyone!")
-send("hello veresh!")
+send("Hello World!")
+input()
+send("Hello Everyone!")
+input()
+send("Hello Tim!")
+
+send(DISCONNECT_MESSAGE)
