@@ -7,38 +7,40 @@ class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
 
-        self.setGeometry(100, 100, 400, 800)
+        self.setGeometry(100, 100, 500, 700)
         self.setWindowTitle('Safe Chat - Paralax')
         self.InitUI()
 
     def InitUI(self):
         self.label = QLabel(self)
         self.label.setText('Welcome To Safe Chat')
-        self.label.setFont(QtGui.QFont("Times", 19, QtGui.QFont.Bold))
+        self.label.setFont(QtGui.QFont("Times", 30, QtGui.QFont.Bold))
         self.label.adjustSize()
-        self.label.move(20, 50)
+        self.label.move(105, 100)
 
         # self.t1 = QtWidgets.QLineEdit(self)
         # self.t1.move(200, 200)
 
         self.info = QPushButton(self)
         self.info.setText("Info")
-        self.info.setGeometry(60, 350, 110, 50)
+        self.info.setGeometry(60+40, 350+40, 110+25, 50+25)
         self.info.clicked.connect(self.Info_click)
 
 
         self.start = QPushButton(self)
         self.start.setText("Start!")
-        self.start.setGeometry(230, 350, 110, 50)
+        self.start.setGeometry(230+40, 350+40, 110+25, 50+25)
+        self.start.clicked.connect(self.chat)
+
 
         self.more_from_us = QPushButton(self)
         self.more_from_us.setText("More from us")
-        self.more_from_us.setGeometry(60, 450, 110, 50)
+        self.more_from_us.setGeometry(60+40, 450+40, 110+25, 50+25)
         self.more_from_us.clicked.connect(self.more_from_us_click)
 
         self.exit = QPushButton(self)
         self.exit.setText("Exit")
-        self.exit.setGeometry(230, 450, 110, 50)
+        self.exit.setGeometry(230+40, 450+40, 110+25, 50+25)
         self.exit.clicked.connect(self.close)
 
     def update(self):
@@ -51,6 +53,21 @@ class MyWindow(QMainWindow):
     def Info_click(self, checked):
         self.w = Info()
         self.w.show()
+    
+    def chat(self):
+        self.label.clear()
+        self.info.deleteLater()
+        self.more_from_us.deleteLater()
+        self.exit.deleteLater()
+        self.start.deleteLater()
+
+
+        self.t1 = QLineEdit(self)
+        self.t1.setGeometry(0, 200, 250, 60)
+        #self.t1.move(200, 200)
+        self.t1.show()
+        #self.inputbox.connect(self.more_from_us_click)
+
 
     def closeEvent(self, event):
         quit_msg = "Are you sure you want to exit the program?"
