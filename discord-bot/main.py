@@ -41,7 +41,18 @@ async def pypi(ctx, query=None):
     if query is None:
         await ctx.send(embed=discord.Embed(description="Please specify a package to query.", color=color))
         return
-
+    
+    request = requests.get(f"https://pypi.org/pypi/{query}/json/")
+    if request.status_code == 404:
+        await ctx.send(embed=discord.Embed(description=f"There is no such package called **{query}**!", color=0x00))
+    else:
+        data = request.json()["info"]
+        website = data['project_url']
+        summary = data["summary"]
+        homepage = data["home_page"]
+        version = data["version"]
+        requirements = "No requirements" if data["requires_dist"] is None else "\n".join(data["requires_dist"])
+        await ctx.send(embed=discord.Embed(url=website, title=f"{query} version {version}", description=f"Version: {version}\nSummary: {summary}\nHomepage: {homepage}\nRequirements:\n```\n{requirements}```", color=color))
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -53,7 +64,7 @@ async def wanted(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    background = Image.open("wanted.jpg")
+    background = Image.open("discord-bot/wanted.jpg")
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     foreground = Image.open(data)
@@ -71,7 +82,7 @@ async def triggered(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    background = Image.open("triggered.png")
+    background = Image.open("discord-bot/triggered.png")
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     foreground = Image.open(data)
@@ -84,19 +95,6 @@ async def triggered(ctx, member: discord.Member = None):
 
     await ctx.send(file = discord.File("output.png"))
     os.remove("output.png")
-
-    
-    request = requests.get(f"https://pypi.org/pypi/{query}/json/")
-    if request.status_code == 404:
-        await ctx.send(embed=discord.Embed(description=f"There is no such package called **{query}**!", color=0x00))
-    else:
-        data = request.json()["info"]
-        website = data['project_url']
-        summary = data["summary"]
-        homepage = data["home_page"]
-        version = data["version"]
-        requirements = "No requirements" if data["requires_dist"] is None else "\n".join(data["requires_dist"])
-        await ctx.send(embed=discord.Embed(url=website, title=f"{query} version {version}", description=f"Version: {version}\nSummary: {summary}\nHomepage: {homepage}\nRequirements:\n```\n{requirements}```", color=color))
 
 @client.event
 async def on_message(message):
