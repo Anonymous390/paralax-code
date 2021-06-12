@@ -6,6 +6,7 @@ import requests
 
 dotenv.load_dotenv()
 token = os.getenv("TOKEN")
+color = 0x3498eb
 
 client = commands.Bot(command_prefix="#")
 
@@ -28,7 +29,7 @@ async def pypi(ctx, query=None):
         return
     request = requests.get(f"https://pypi.org/pypi/{query}/json/")
     if request.status_code == 404:
-        await ctx.send(embed=discord.Embed(description=f"There is no such package called **{query}**!", color=color))
+        await ctx.send(embed=discord.Embed(description=f"There is no such package called **{query}**!", color=0x00))
     else:
         data = request.json()["info"]
         website = data['project_url']
@@ -42,6 +43,6 @@ async def pypi(ctx, query=None):
 async def on_message(message):
     if message.content.startswith("oof"):
         await message.channel.send("Bidoof!")
-    await bot.process_commands(message)
+    await client.process_commands(message)
 
 client.run(token)
