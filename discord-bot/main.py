@@ -18,6 +18,6 @@ async def hello(ctx):
 
 @client.command(aliases=["c"])
 async def cookie(ctx):
-    await ctx.send("Have a ")
+    await ctx.send("Have a 🍪")
 
 client.run(token)
