@@ -1,3 +1,4 @@
+# Discord.py imports
 import discord
 import os
 import dotenv
@@ -5,10 +6,17 @@ from PIL import Image, ImageOps
 from discord.ext import commands
 from io import BytesIO
 
+# Command imports
+from discord.ext import commands
+from init import client
+
+# Other imports 
+import requests
+
 dotenv.load_dotenv()
 token = os.getenv("TOKEN")
+color = 0x3498eb
 
-client = discord.Client()
 
 bot = commands.Bot(command_prefix='!')
 
@@ -16,13 +24,24 @@ bot = commands.Bot(command_prefix='!')
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
+# Command imports
+from fun_commands import random_choice
+
+
+@client.command(aliases=["h"])
+async def hello(ctx):
+    await ctx.send("Hello!")
+
+@client.command(aliases=["c"])
+async def cookie(ctx):
+    await ctx.send("Have a 🍪")
+
+@client.command()
+async def pypi(ctx, query=None):
+    if query is None:
+        await ctx.send(embed=discord.Embed(description="Please specify a package to query.", color=color))
         return
 
-    if message.content.startswith('#hello'):
-        await message.channel.send('Hello!')
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -65,6 +84,25 @@ async def triggered(ctx, member: discord.Member = None):
 
     await ctx.send(file = discord.File("output.png"))
     os.remove("output.png")
+
+    
+    request = requests.get(f"https://pypi.org/pypi/{query}/json/")
+    if request.status_code == 404:
+        await ctx.send(embed=discord.Embed(description=f"There is no such package called **{query}**!", color=0x00))
+    else:
+        data = request.json()["info"]
+        website = data['project_url']
+        summary = data["summary"]
+        homepage = data["home_page"]
+        version = data["version"]
+        requirements = "No requirements" if data["requires_dist"] is None else "\n".join(data["requires_dist"])
+        await ctx.send(embed=discord.Embed(url=website, title=f"{query} version {version}", description=f"Version: {version}\nSummary: {summary}\nHomepage: {homepage}\nRequirements:\n```\n{requirements}```", color=color))
+
+@client.event
+async def on_message(message):
+    if message.content.startswith("oof"):
+        await message.channel.send("Bidoof!")
+    await client.process_commands(message)
 
 
 client.run(token)
