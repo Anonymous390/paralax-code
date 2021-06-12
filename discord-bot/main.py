@@ -1,18 +1,27 @@
+# Discord.py imports
 import discord
-from discord.ext import commands
 import os
 import dotenv
+
+# Command imports
+from discord.ext import commands
+from init import client
+
+# Other imports 
 import requests
 
 dotenv.load_dotenv()
 token = os.getenv("TOKEN")
 color = 0x3498eb
 
-client = commands.Bot(command_prefix="#")
 
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
+
+# Command imports
+from fun_commands import random_choice
+
 
 @client.command(aliases=["h"])
 async def hello(ctx):
