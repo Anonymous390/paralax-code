@@ -22,7 +22,7 @@ async def wanted(ctx, member: discord.Member = None):
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     foreground = Image.open(data)
-    resized_foreground = foreground.resize((round(foreground.size[0]*0.5), round(foreground.size[1]*0.5)))
+    resized_foreground = foreground.resize((300, 300))
 
     offset = ((background.size[0] - resized_foreground.size[0]) // 2, (background.size[1] - resized_foreground.size[1]) // 2)
     background.paste(resized_foreground, offset, resized_foreground.convert("RGBA"))
@@ -49,5 +49,3 @@ async def triggered(ctx, member: discord.Member = None):
 
     await ctx.send(file = discord.File("output.png"))
     os.remove("output.png")
-
-
