@@ -36,49 +36,63 @@ async def pypi(ctx, query=None):
 async def help(ctx):
     em = discord.Embed(title="Help", description="Use !help <command> for extended information on a command.", color = ctx.author.color)
     em.add_field(name="Fun", value="random, h, c")
-    em.add_field(name="Image", value="triggered, wanted")
+    em.add_field(name="Image", value="triggered, wanted, sparkle, deepfry")
     em.add_field(name="Package", value="pypi")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def random(ctx):
-    em = discord.Embed(title="random", description="Chooses a random item from a given set")
+    em = discord.Embed(title="random", description="Chooses a random item from a given set", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!random <item1> <item2> <item3>")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def pypi(ctx):
-    em = discord.Embed(title="pypi", description="Lists the details of the mentioned pypi package")
+    em = discord.Embed(title="pypi", description="Lists the details of the mentioned pypi package", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!pypi <package name>")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def triggered(ctx):
-    em = discord.Embed(title="triggered", description="Displays the profile picture of the user with the triggered meme!")
+    em = discord.Embed(title="triggered", description="Displays the profile picture of the user with the triggered meme!", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!triggered [username-optional]")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def wanted(ctx):
-    em = discord.Embed(title="wanted", description="Displays the profile picture of the user with the wanted meme!")
+    em = discord.Embed(title="wanted", description="Displays the profile picture of the user with the wanted meme!", color = ctx.author.color)
+    em.add_field(name="**Syntax**", value="!wanted [username-optional]")
+
+    await ctx.send(embed=em)
+
+@help.command()
+async def deepfry(ctx):
+    em = discord.Embed(title="deepfry", description="Displays the profile picture of the user with deepfry effect!", color = ctx.author.color)
+    em.add_field(name="**Syntax**", value="!deepfry [username-optional]")
+
+    await ctx.send(embed=em)
+
+@help.command()
+async def sparkle(ctx):
+    em = discord.Embed(title="wanted", description="Displays the profile picture of the user with sparkles!", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!wanted [username-optional]")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def h(ctx):
-    em = discord.Embed(title="h", description="Bot responds with 'Hello'.")
+    em = discord.Embed(title="h", description="Bot responds with 'Hello'.", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!h")
 
     await ctx.send(embed=em)
 
 @help.command()
 async def c(ctx):
-    em = discord.Embed(title="c", description="Bot responds with ||ITS A SECRET TRY IT YOURSELF||'.")
+    em = discord.Embed(title="c", description="Bot responds with ||ITS A SECRET TRY IT YOURSELF||'.", color = ctx.author.color)
     em.add_field(name="**Syntax**", value="!c")
 
     await ctx.send(embed=em)
