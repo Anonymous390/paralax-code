@@ -36,7 +36,7 @@ def message():
                 print(in_data[key])
                 flag = True
         if not flag:
-            teach = input("Oh, im not so sure about that, would you like to teach me?\n(type yes/no)\n")
+            teach = input("Oh, I'm not so sure about that, would you like to teach me?\n(type yes/no)\n")
             if teach == "yes":
                 category = input("""Ohh! Thank you so much for teaching me new things!
 What category does this knowledge fall into?
