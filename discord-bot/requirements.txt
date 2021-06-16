@@ -1,0 +1,6 @@
+python-dotenv==0.17.1
+discord==1.0.1
+discord.py==1.7.2
+Pillow==8.1.2
+opencv-python==4.5.1.48
+numpy==1.20.2
