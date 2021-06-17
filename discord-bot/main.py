@@ -21,7 +21,6 @@ async def on_ready():
 from fun_commands import random_choice, on_message, hello, cookie
 from img_commands import on_command_error, triggered, wanted, deepfry, sparkle
 from settings_commands import pypi
-# from mod_commands import mute, unmute, ban, unban
 from moderation_commands import mute, unmute, ban, unban, warn, kick
 
 
