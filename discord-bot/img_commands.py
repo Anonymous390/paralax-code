@@ -38,7 +38,7 @@ async def wanted(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    background = Image.open("discord-bot/wanted.jpg")
+    background = Image.open("wanted.jpg")
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     foreground = Image.open(data)
@@ -56,7 +56,7 @@ async def triggered(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    background = Image.open("discord-bot/triggered.png")
+    background = Image.open("triggered.png")
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     foreground = Image.open(data)
@@ -92,14 +92,16 @@ async def deepfry(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    im = Image.open("images.jpeg")
+    asset = member.avatar_url_as(size =128)
+    data = BytesIO(await asset.read())
+    im = Image.open(data).convert('RGB')
 
     enhancer = ImageEnhance.Brightness(im)
 
     im = enhancer.enhance(0.5)
     im = im.filter(ImageFilter.GaussianBlur(radius = 1.4))
     converter = ImageEnhance.Color(im)
-    im = converter.enhance(10)
+    im = converter.enhance(7)
     im.save('rev.png')
     image = cv2.imread('rev.png')
     noise_img = sp_noise(image,0.05)
