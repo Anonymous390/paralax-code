@@ -102,8 +102,8 @@ async def deepfry(ctx, member: discord.Member = None):
     im = im.filter(ImageFilter.GaussianBlur(radius = 1.4))
     converter = ImageEnhance.Color(im)
     im = converter.enhance(7)
-    im.save('discord-bot/rev.png')
-    image = cv2.imread('discord-bot/rev.png')
+    im.save('rev.png')
+    image = cv2.imread('rev.png')
     noise_img = sp_noise(image,0.05)
     cv2.imwrite('output.png', noise_img)
 
