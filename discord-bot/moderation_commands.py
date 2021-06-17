@@ -13,19 +13,19 @@ async def on_command_error(ctx, error):
         await ctx.send("Looks like you don't have the permissions and the required role.")
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.send(f'User {member.mention} has been kicked!')
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f'User {member.mention} has been banned!')
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(manage_roles=True)
 async def mute(ctx, member: discord.Member):
     muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
     verified_role = discord.utils.get(ctx.guild.roles, name="verified")
@@ -34,7 +34,7 @@ async def mute(ctx, member: discord.Member):
     await ctx.send(f'User {member.mention} has been muted!')
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(manage_roles=True)
 async def unmute(ctx, member: discord.Member):
     muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
     verified_role = discord.utils.get(ctx.guild.roles, name="verified")
@@ -43,7 +43,7 @@ async def unmute(ctx, member: discord.Member):
     await ctx.send(f'User {member.mention} has been unmuted!')
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(ban_members=True)
 async def unban(ctx, *, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
@@ -56,7 +56,7 @@ async def unban(ctx, *, member):
             return
 
 @client.command()
-@client.has_role(853334263968301118)
+@client.has_permission(manage_roles=True)
 async def warn(ctx, member: discord.Member, *, reason):
     if member.id in [ctx.author.id, client.user.id]:
         return await ctx.send("You cant warn yourself or the bot!")
