@@ -74,7 +74,7 @@ async def triggered(ctx, member: discord.Member = None):
 async def sparkle(ctx, memeber: discord.Member = None):
     if memeber == None:
         member = ctx.author
-    foregorund = Image.open("sparkles.png")
+    foregorund = Image.open("discord-bot/sparkles.png")
     asset = member.avatar_url_as(size =128)
     data = BytesIO(await asset.read())
     background = Image.open(data)
@@ -92,14 +92,16 @@ async def deepfry(ctx, member: discord.Member = None):
     if member == None:
         member = ctx.author
 
-    im = Image.open("images.jpeg")
+    asset = member.avatar_url_as(size =128)
+    data = BytesIO(await asset.read())
+    im = Image.open(data).convert('RGB')
 
     enhancer = ImageEnhance.Brightness(im)
 
     im = enhancer.enhance(0.5)
     im = im.filter(ImageFilter.GaussianBlur(radius = 1.4))
     converter = ImageEnhance.Color(im)
-    im = converter.enhance(10)
+    im = converter.enhance(7)
     im.save('rev.png')
     image = cv2.imread('rev.png')
     noise_img = sp_noise(image,0.05)
