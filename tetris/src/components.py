@@ -113,7 +113,7 @@ class Game(Interface):
             self.refresh_frame()
 
     def level(self):
-        if self.level_time > 0.12:
+        if self.level_time > self.lvl_time_obs_float_0:
             self.level_time -= self.lvl_time_obs_float_1
 
         if self.level_time / self.time_div > self.level_time_max:

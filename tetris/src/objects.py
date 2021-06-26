@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from .shapes import I, J, L, O, S, T, Z
 
 
-@dataclass(repr=True)
+@dataclass
 class Shape:
     shapes = [S, Z, I, O, J, L, T]
     shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0),
